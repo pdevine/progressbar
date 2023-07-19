@@ -697,7 +697,7 @@ func (p *ProgressBar) State() State {
 	if p.state.currentNum > 0 {
 		s.SecondsLeft = s.SecondsSince / float64(p.state.currentNum) * (float64(p.config.max) - float64(p.state.currentNum))
 	}
-	s.KBsPerSecond = float64(p.state.currentBytes) / 1024.0 / s.SecondsSince
+	s.KBsPerSecond = float64(p.state.currentBytes) / 1000.0 / s.SecondsSince
 	return s
 }
 
@@ -1067,7 +1067,7 @@ func average(xs []float64) float64 {
 
 func humanizeBytes(s float64) (string, string) {
 	sizes := []string{" B", " kB", " MB", " GB", " TB", " PB", " EB"}
-	base := 1024.0
+	base := 1000.0
 	if s < 10 {
 		return fmt.Sprintf("%2.0f", s), sizes[0]
 	}
